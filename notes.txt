@@ -1,0 +1,5 @@
+allowed host: que direcciones se pueden consultar
+debug true: te logguea mayor info --- en prod pasar a false
+secret key: encriptacion de usuarios y otros generado aleatorio -- cambiar luego
+Database: ahora por defecto usamos sqlite para mayor agilidad pero luego revisar para usar otra (postgrsql)
+static_url: tienen los archivos de html y css

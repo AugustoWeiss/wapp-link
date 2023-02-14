@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% load qr_code %}
+
+{% block content %}
+
+<h1>Your QR link</h1>
+<div>{% qr_from_text qr_url size="S" image_format="png" %}</div>
+<p>{{ qr_url }}</p>
+
+{% endblock %}

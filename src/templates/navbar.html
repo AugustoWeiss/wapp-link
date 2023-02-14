@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<nav>
+    <ul>
+        <li>
+            <a href="{% url 'home-page' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'create-link' %}">Create QR</a>
+        </li>
+        <li>
+            <a href="{% url 'contact-page' %}">Contact us</a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
