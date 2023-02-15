@@ -4,12 +4,25 @@ from .models import QR_link
 from .forms import CreateNewLink
 
 BASE_URL = "wapplink.me"
-API_WHATSAPP = "api.whatsapp.com"
+API_WHATSAPP = "https://api.whatsapp.com"
 # Create your views here.
 
 
 def home_view(request, *args, **kwargs):
-    return render(request, "home.html", {})
+    if request.method == 'GET':
+        return render(request, "home.html", {
+            'form': CreateNewLink,
+            'qr_url': False,
+        })
+    else:
+        qr_link = QR_link.objects.create(
+            phone=request.POST['phone'],
+            message=request.POST['message'],
+        )
+        return render(request, 'home.html', {
+            'form': CreateNewLink,
+            'qr_url': BASE_URL + '/' + qr_link.key
+        })
 
 
 def contact_view(request, *args, **kwargs):
@@ -17,8 +30,9 @@ def contact_view(request, *args, **kwargs):
 
 
 def create_link(request, *args, **kwargs):
+    # TODO: remove
     if request.method == 'GET':
-        return render(request, "create-link.html", {
+        return render(request, "create-qr-form.html", {
             'form': CreateNewLink,
         })
     else:
@@ -32,6 +46,7 @@ def create_link(request, *args, **kwargs):
 
 
 def create_redirect(request, *args, **kwargs):
+    # import pdb; pdb.set_trace()
     if 'key' in kwargs and kwargs['key']:
         data = get_object_or_404(QR_link, key=kwargs['key'])
         params = {'phone': data.phone, 'text': data.message}

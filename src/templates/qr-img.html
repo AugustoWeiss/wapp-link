@@ -1,11 +1,24 @@
-{% extends 'base.html' %}
-
 {% load qr_code %}
 
-{% block content %}
+{% block qr_img %}
+<div class="col-md-7 col-lg-6">
+    <div class="col">
+      <div class="card shadow-sm">
+        {% qr_from_text qr_url size="S" image_format="png" %}
+        
+        <div class="card-body">
+        <p>{{ qr_url }}</p>
+          <p class="card-text">Great!! Your QR code is ready to be used!</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Copy</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 
-<h1>Your QR link</h1>
-<div>{% qr_from_text qr_url size="S" image_format="png" %}</div>
-<p>{{ qr_url }}</p>
 
 {% endblock %}

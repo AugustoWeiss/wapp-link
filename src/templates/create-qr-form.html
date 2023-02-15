@@ -1,0 +1,60 @@
+{% block qr-form %}
+<section id="create-qr">
+    <div class="container col-xxl-8 px-4 py-5">
+        <main>
+            <div class="py-5 text-center">
+                <h2>Create your own QR</h2>
+                <p class="lead">Complete with your phone and a custom message!</p>
+            </div>
+
+            <div class="row g-5">
+                <div class="col-md-7 col-lg-6">
+                    <form class="needs-validation" method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <select class="form-select" id="country" required>
+                                    <option value="">Code</option>
+                                    <option>United States</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid country code.
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                {{ form.phone.as_p }}
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Your phone..." required>
+                                <div class="invalid-feedback">
+                                    A valid phone number is required.
+                                </div>
+                            </div>
+
+                            <div class="col-9 form-floating">
+                                {{ form.message.as_p }}
+                                <input type="text" class="form-control" name="message" id="message" placeholder="msg" required>
+                            </div>
+
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="btn btn-outline-secondary btn-lg px-4" type="submit">Get the QR!</button>
+                    </form>
+                </div>
+
+                <!-- <div class="col-md-5 col-lg-4 order-md-last"> -->
+                    {% if qr_url %}
+                        {% block qr-img %}
+                            {% include "qr-img.html" %}
+                        {% endblock %}
+                    {% endif %}
+                <!-- </div> -->
+                
+            </div>
+        </main>
+    </div>
+
+</section>
+
+{% endblock %}

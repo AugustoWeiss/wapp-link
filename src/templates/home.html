@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Start now!!</h1>
-    <h2>And create your own Contact QR link</h2>
+    {% block header %}
+        {% include "header.html" %}
+    {% endblock %}
+
+    {% block qr-form %}
+        {% include "create-qr-form.html" %}
+    {% endblock %} 
 {% endblock %}

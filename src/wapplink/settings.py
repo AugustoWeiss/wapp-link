@@ -43,9 +43,9 @@ INSTALLED_APPS = [
     # own apps
     'profiles',
     'qr_link',
-    'qr_code',
 
     # thirty-apps
+    'qr_code',
 ]
 
 MIDDLEWARE = [
